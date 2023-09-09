@@ -1,10 +1,4 @@
-let playerSelection = prompt("Enter a choice: ");
-playerSelection = playerSelection.toLowerCase();
-function getComputerChoice(){
-    const choice = ['rock','paper','scissor'];
-    const compChoice = choice[Math.floor(Math.random()*choice.length)];
-    return compChoice;
-}
+
 
 function playRound(playerSelection, compSelection){
     
@@ -28,10 +22,39 @@ function playRound(playerSelection, compSelection){
 
 function game(){
     
+    let lose=0;
+    let win=0;
     for(let i=0;i<5;i++){
-        return playRound(playerSelection,compSelection);
+
+        let playerSelection = prompt("Enter a choice: ");
+        playerSelection = playerSelection.toLowerCase();
+
+        function getComputerChoice(){
+            const choice = ['rock','paper','scissor'];
+            const compChoice = choice[Math.floor(Math.random()*choice.length)];
+            return compChoice;
+        }
+        const compSelection = getComputerChoice();
+        
+
+        if(playerSelection=="rock" && compSelection=="scissor" || playerSelection=="paper" && compSelection=="rock" || playerSelection=="scissor" && compSelection=="paper" ){
+            win+=1;
+        }
+        else if(playerSelection=="rock" && compSelection=="paper" || playerSelection=="paper" && compSelection=="scissor" || playerSelection=="scissor" && compSelection=="rock" ){
+            lose+=1
+        }
+        console.log(playRound(playerSelection,compSelection));
         
     }
+    console.log("Player Score:",win)
+    console.log("Computer Score:",lose)
+    if(win>lose){
+        console.log("You Win")
+    }
+    else{
+        console.log("You Lose")
+    }
 }  
-const compSelection = getComputerChoice();
-console.log(playRound(playerSelection,compSelection))
+console.log(game())
+
+
